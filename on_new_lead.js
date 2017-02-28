@@ -1,6 +1,7 @@
+// This code will execute whenever a new lead is created in the system
+
 // You can use 900+ modules here. Supported modules: https://tehsis.github.io/webtaskio-canirequire/
 // e.g.:
-
 var request = require('request');
 
 module.exports = function(ctx, cb) {
