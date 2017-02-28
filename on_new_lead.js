@@ -1,4 +1,4 @@
-// This code will execute whenever a new lead is created in the system
+// This code will execute whenever a new lead is created
 
 // You can use 900+ modules here. Supported modules: https://tehsis.github.io/webtaskio-canirequire/
 // e.g.:
