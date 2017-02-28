@@ -94,7 +94,7 @@ const leadsView = `
       $('#create').click(function () {
         var data = $('form').serialize();
         $('#newLead').hide();
-        $.post('https://crm.run.webtask.io/on_new_lead17', data, (response) => {
+        $.post(ctx.secrets.on_new_lead, data, (response) => {
           $('#leadRecord').html(JSON.stringify(response, null, 2));
           $('#leadResult').show();
         });
@@ -214,12 +214,12 @@ const afterView = `
     $('#onnewlead').click(function () {
       $('#code-container1').show();
       $('#code-container2').hide();
-      $('#code1').attr('src', 'https://webtask.it.auth0.com/edit/app#/on_new_lead17/eyJhbGciOiJIUzI1NiIsImtpZCI6IjIifQ.eyJqdGkiOiJlOTJiZGViN2RiNmU0ZmRjYWYxZDYzZWZlYTE2OTNlYSIsImlhdCI6MTQ4NzIwNjQ4NCwiY2EiOltdLCJkZCI6MywidGVuIjoiY3JtIn0.Bvr3oqEAX8gvoDxkFSd5N4AT4cLeQuM5cXw4UPbV6Go');
+      $('#code1').attr('src', ctx.secrets.edit_on_new_lead);
     });
     $('#onopportunitychanged').click(function () {
       $('#code-container1').hide();
       $('#code-container2').show();
-      $('#code2').attr('src', 'https://webtask.it.auth0.com/edit/app#/on_opportunity_changed27/eyJhbGciOiJIUzI1NiIsImtpZCI6IjIifQ.eyJqdGkiOiJlOTJiZGViN2RiNmU0ZmRjYWYxZDYzZWZlYTE2OTNlYSIsImlhdCI6MTQ4NzIwNjQ4NCwiY2EiOltdLCJkZCI6MywidGVuIjoiY3JtIn0.Bvr3oqEAX8gvoDxkFSd5N4AT4cLeQuM5cXw4UPbV6Go');
+      $('#code2').attr('src', ctx.secrets.edit_on_opportunity_changed);
     });    
   });
   </script>
