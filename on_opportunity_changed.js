@@ -1,4 +1,4 @@
-// This code will execute whenever an opportunity is changed in the system
+// This code will execute whenever an opportunity is changed
 
 // You can use 900+ modules here. Supported modules: https://tehsis.github.io/webtaskio-canirequire/
 // e.g.:
