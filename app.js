@@ -10,7 +10,7 @@ app.get('/', (req, res) => res.redirect('/app/leads'));
 app.get('/leads', (req, res) => res.send(leadsView(req.webtaskContext.secrets)));
 app.get('/settings/new', (req, res) => res.send(afterView(req.webtaskContext.secrets)));
 app.post('/api/email', (req,res) => {
-  console.log('email received for lead: ' + req.body.name)
+  console.log('email received for lead: ' + req.body.name);
   res.end();
 });
 app.post('/api/leads', (req,res) => {
