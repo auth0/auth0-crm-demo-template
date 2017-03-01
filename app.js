@@ -12,9 +12,9 @@ app.get('/settings/new', (req, res) => res.send(afterView(req.webtaskContext.sec
 app.post('/api/email', (req,res) => {
   console.log('email received for lead: ' + req.body.name)
   res.end();
-);
+});
 app.post('/api/leads', (req,res) => {
-request.post(
+  request.post(
   {
     uri: req.webtaskContext.secrets.on_new_lead,
     json:true,
