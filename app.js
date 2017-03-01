@@ -15,13 +15,14 @@ app.post('/api/email', (req,res) => {
 });
 app.post('/api/leads', (req,res) => {
   request.post(
-  {
-    uri: req.webtaskContext.secrets.on_new_lead,
-    json:true,
-    body: req.body
-  },function(req1, res1) {
-    res.send(res1.body);
-  });
+    {
+      uri: req.webtaskContext.secrets.on_new_lead,
+      json:true,
+      body: req.body
+    },function(req1, res1) {
+      res.send(res1.body);
+    }
+  );
 });
 
 module.exports = app;
