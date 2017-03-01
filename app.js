@@ -9,16 +9,19 @@ app.use(bodyParser.urlencoded());
 app.get('/', (req, res) => res.redirect('/app/leads'));
 app.get('/leads', (req, res) => res.send(leadsView(req.webtaskContext.secrets)));
 app.get('/settings/new', (req, res) => res.send(afterView(req.webtaskContext.secrets)));
-app.post('/api/email', (req,res) => console.log('email received for lead: ' + req.body.name));
+app.post('/api/email', (req,res) => {
+  console.log('email received for lead: ' + req.body.name)
+  res.end();
+);
 app.post('/api/leads', (req,res) => {
-  request.post(
-    {
-      uri: req.webtaskContext.secrets.on_new_lead,
-      json:true,
-      body: req.body
-    },function(req1, res1) {
-      res.send(res1.body);
-    });
+request.post(
+  {
+    uri: req.webtaskContext.secrets.on_new_lead,
+    json:true,
+    body: req.body
+  },function(req1, res1) {
+    res.send(res1.body);
+  });
 });
 
 module.exports = app;
