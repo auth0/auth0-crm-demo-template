@@ -35,8 +35,8 @@ function leadsView(secrets) {
       <meta charset="utf-8">
       <meta http-equiv="X-UA-Compatible" content="IE=edge">
       <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-      <meta name="description" content="ContosoCRM">
-      <title>Contoso CRM</title>
+      <meta name="description" content="{{brand}} CRM">
+      <title>{{brand}} CRM</title>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
       <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
       <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300italic,700,700italic">
@@ -78,7 +78,7 @@ function leadsView(secrets) {
     <body>
       <div class="row c-header">
         <div class="column c-header">
-          <h1>Contoso CRM<h1>
+          <h1>{{brand}} CRM<h1>
         </div>
       </div>
       <div class="row c-menu-container">
