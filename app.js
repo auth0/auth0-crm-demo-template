@@ -165,7 +165,9 @@ var afterView = function(secrets) {
                   <div class="circle"></div>
                 </div>
               </div>
-              <iframe id="code" height="100%" width="100%"></iframe>
+              <div style="height: 100%; overflow: hidden;">
+                <iframe id="code" height="100%" width="100%" style="margin-top: -65px;"></iframe>
+              </div>
           </div>
           
           <div class="content" id="settings-content">
