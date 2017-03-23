@@ -38,84 +38,77 @@ function leadsView(secrets) {
       <meta name="description" content="{{brand}} CRM">
       <title>{{brand}} CRM</title>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-      <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-      <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300italic,700,700italic">
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/milligram/1.2.4/milligram.min.css">
-      <style>
-        html, body {
-          height: 100%;
-        }
-        .c-menu-container {
-          min-height: 100%;
-        }
-        .row.c-header { 
-          background-color: #ddd; 
-          padding-top: 2rem;
-          padding-left: 2rem;
-          padding-bottom: 0rem;
-        }
-        .column.c-header {
-          padding-left: 0;
-        }
-        .column.c-menu { 
-          background-color: #eee; 
-          padding-top: 20px;
-          padding-left: 20px;
-          padding-right: 0;
-          padding-bottom: 0rem;
-          min-height: 100%;
-        }
-        .column.c-content {
-          min-height: 100%;
-          padding-top: 15px;
-        }
-        pre {
-          padding-left: 2rem;
-        }
-      </style>
+      <link rel="stylesheet" type="text/css" href="https://cdn.auth0.com/fonts/340567/BCE5F33B94B3B1134.css"/>
+      <link rel="stylesheet" type="text/css" href="https://cdn.auth0.com/auth0-extend/assets/crm-sample-v1.0.css"/>
     </head>
     <body>
-      <div class="row c-header">
-        <div class="column c-header">
-          <h1>{{brand}} CRM<h1>
+      <div class="crm">
+        <div class="header">
+          <div class="company">
+            <h1>{{brand}} CRM</h1>
+          </div>
+          <div class="search">
+            <i class="icon-budicon-489"></i>
+            <input type="text" placeholder="type something to search"/>
+          </div>
+          <div class="user">
+            John Doe
+            <div class="avatar"></div>
+          </div>
         </div>
-      </div>
-      <div class="row c-menu-container">
-        <div class="c-menu column column-10" >
-          <a href="/app/leads">Leads</a><br>
-          Accounts<br>
-          Opportunities<br>
-          Reports<br>
-          <a href="/app/settings/new">Settings</a><br>
+        <div class="container">
+          <div class="sidebar">
+            <ol>
+              <li class="active"><a href="/app/leads"><i class="icon-budicon-289"></i>Leads</a></li>
+              <li><i class="icon-budicon-290"></i>Accounts</li>
+              <li><i class="icon-budicon-209"></i>Opportunities</li>
+              <li><i class="icon-budicon-706"></i>Reports</li>
+              <li><a href="/app/settings/new"><i class="icon-budicon-329"></i>Settings</a></li>
+            </ol>
+          </div>
+          <div class="content">
+            <h1>Leads</h1>
+            <div class="form-container">
+              <h2>Add new lead</h2>
+  
+              <div class="form-content">
+                <form class="lead-form">
+                  <div>
+                    <label for="lead">Name</label>
+                    <input type="text" placeholder="Enter lead name..." id="lead" name="name">
+                  </div>
+                  <div>
+                    <label for="opportunity">Value</label>
+                    <input type="Number" placeholder="Enter potential value in USD..." id="opportunity" name="value">
+                  </div>
+                  <button id="create" class="button">Create new lead</button>
+                </form>
+                
+                <div class="form-result" id="leadResult">
+                  <pre id="leadRecord"></pre>
+                <div>
+              </div>
+            </div>
+          </div>             
+            
+          </div>
         </div>
-        <div class="column column-80 c-content" id="newLead">
-          <h2>Leads</h2>
-          <h4>Add new lead</h4>
-          <form>
-            <fieldset>
-              <label for="lead">Name</label>
-              <input type="text" placeholder="Enter lead name..." id="lead" name="name">
-              <label for="opportunity">Value</label>
-              <input type="Number" placeholder="Enter potential value in USD..." id="opportunity" name="value">
-            </fieldset>
-          </form>
-          <button id="create" class="button">Create new lead</button>
-        </div>
-        <div class="column column-80 c-content" id="leadResult" style="display:none">
-          <h2>Leads</h2>
-          <h4>New lead record</h4>
-          <pre id="leadRecord"></pre>
-        <div>
       </div>
       <script>
         $(function () {
-          $('#create').click(function () {
+          $('#create').click(function (e) {
+            e.stopPropagation();
+            e.preventDefault();
+            $('#create').attr('disabled', true);
+            $('#create').text('Creating');
+            
             var data = $('form').serialize();
             $('#newLead').hide();
             $.post('${secrets.api_leads}', data, (response) => {
               $('#leadRecord').html(JSON.stringify(response, null, 2));
               $('#leadResult').show();
+              $('#create').attr('disabled', false);
+              $('#create').text('Create new lead');
             });
           });
         });
@@ -135,112 +128,98 @@ var afterView = function(secrets) {
       <meta name="description" content="{{brand}} CRM">
       <title>{{brand}} CRM</title>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-      <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-      <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300italic,700,700italic">
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/milligram/1.2.4/milligram.min.css">
-      <style>
-        html, body {
-          height: 100%;
-        }
-        .c-description {
-          margin-bottom:10px;
-        }
-        .c-menu-container {
-          min-height: 100%;
-        }
-        .row.c-header { 
-          background-color: #ddd; 
-          padding-top: 2rem;
-          padding-left: 2rem;
-          padding-bottom: 0rem;
-        }
-        .column.c-header {
-          padding-left: 0;
-        }
-        .column.c-menu { 
-          background-color: #eee; 
-          padding-top: 20px;
-          padding-left: 20px;
-          padding-right: 0;
-          padding-bottom: 0rem;
-          min-height: 100%;
-        }
-        .column.c-content {
-          min-height: 100%;
-          padding-top: 15px;
-        }
-        .button.c-button {
-          margin-left: 0px;
-        }
-        iframe {
-          display: inline-block;
-          padding-left: 20px;
-          width: 100%;
-          position: relative;
-          top: -65px;
-          min-height: 60rem;
-          border: 0;
-        }
-        label {
-          margin-top: 20px;
-        }
-        .c-code-container {
-          display: none;
-          width: 100%;
-          overflow: hidden;
-          margin-bottom: -40px;
-          margin-top: 40px;
-        }    
-      </style>
+      <link rel="stylesheet" type="text/css" href="https://cdn.auth0.com/fonts/340567/BCE5F33B94B3B1134.css"/>
+      <link rel="stylesheet" type="text/css" href="https://cdn.auth0.com/auth0-extend/assets/crm-sample-v1.0.css"/>
     </head>
     <body>
-      <div class="row c-header">
-        <div class="column c-header">
-          <h1>{{brand}} CRM<h1>
+      <div class="crm">
+        <div class="header">
+          <div class="company">
+            <h1>{{brand}} CRM<h1>
+          </div>
+          <div class="search">
+            <i class="icon-budicon-489"></i>
+            <input type="text" placeholder="type something to search"/>
+          </div>
+          <div class="user">
+            John Doe
+            <div class="avatar"></div>
+          </div>
+        </div>
+        <div class="container">
+          <div class="sidebar">
+            <ol>
+              <li><a href="/app/leads"><i class="icon-budicon-289"></i>Leads</a></li>
+              <li><i class="icon-budicon-290"></i>Accounts</li>
+              <li><i class="icon-budicon-209"></i>Opportunities</li>
+              <li><i class="icon-budicon-706"></i>Reports</li>
+              <li class="active"><a href="/app/settings/new"><i class="icon-budicon-329"></i>Settings</a></li>
+            </ol>
+          </div>
+          
+          <div class="content" id="editor-content" style="display: none;">
+              <a class="back" href="/app/settings/new"><i class="icon-budicon-463"></i>Back to settings</a>
+              <div class="spinner-container">
+                <div class="spinner-text">Loading</div>
+                <div class="spinner spinner-sm">
+                  <div class="circle"></div>
+                </div>
+              </div>
+              <div style="height: 100%; overflow: hidden;">
+                <iframe id="code" height="100%" width="100%" style="margin-top: -65px;"></iframe>
+              </div>
+          </div>
+          
+          <div class="content" id="settings-content">
+            <h1>Settings</h1>
+            <div class="list-container">
+              <h2>Custom Actions</h2>
+  
+              <div class="list">
+                <div class="list-item">
+                    <div class="actions">
+                      <button id="onnewlead"><i class="icon-budicon-263"></i>Edit</button>
+                      <button><i class="icon-budicon-266"></i>Delete</button>
+                    </div>
+                    <h3>On new lead</h3>
+                    <p>Modify lead information before it is stored in the system</p>
+                </div>
+                <div class="list-item">
+                    <div class="actions">
+                      <button id="onopportunitychanged"><i class="icon-budicon-263"></i>Edit</button>
+                      <button><i class="icon-budicon-266"></i>Delete</button>
+                    </div>
+                    <h3>On opportunity changed</h3>
+                    <p>Inspect and modify opportunity information when it is changed</p>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-      <div class="row c-menu-container">
-        <div class="c-menu column column-10" >
-          <a href="/app/leads">Leads</a><br>
-          Accounts<br>
-          Opportunities<br>
-          Reports<br>
-          <a href="/app/settings/new">Settings</a><br>
-        </div>
-        <div class="column column-25 c-content">
-          <h2>Settings</h2>
-          <h4>Custom Actions</h4>
-          <form>
-            <fieldset>
-              <label for="lead">On new lead</label>
-              <p class="c-description">Modify lead information before it is stored in the system</p>
-              <a id="onnewlead" class="button button-outline c-button" target="_blank">Edit code</a>
-              <label for="opportunity">On opportunity changed</label>
-              <p class="c-description">Inspect and modify opportunity information when it is changed</p>
-              <a id="onopportunitychanged" class="button button-outline c-button" target="_blank">Edit code</a>
-            </fieldset>
-          </form>
-        </div>
-        <div id="code-container1" class="column column-60 c-code-container">
-          <iframe id="code1" height="800px" width="100%"></iframe>
-        </div>
-        <div id="code-container2" class="column column-60 c-code-container">
-          <iframe id="code2" height="800px" width="100%"></iframe>
-        </div>
-      </div>
+    
       <script>
+      function onLoad() {
+        $('#spinner-container').hide();
+      }
+      
       $(function () {
         $('#onnewlead').click(function () {
-          $('#code-container1').show();
-          $('#code-container2').hide();
-          $('#code1').attr('src', '${secrets.edit_on_new_lead}');
+          $('#settings-content').hide();
+          $('.spinner-container').show();
+          $('#editor-content').show();
+          $('#code').attr('src', '${secrets.edit_on_new_lead}');
         });
         $('#onopportunitychanged').click(function () {
-          $('#code-container1').hide();
-          $('#code-container2').show();
-          $('#code2').attr('src', '${secrets.edit_on_opportunity_changed}');
+          $('#settings-content').hide();
+          $('.spinner-container').show();
+          $('#editor-content').show();
+          $('#code').attr('src', '${secrets.edit_on_opportunity_changed}');
         });    
+        
+        $('#code').on('load', function () {
+          $('.spinner-container').hide();
+        });
       });
       </script>
     </body>
